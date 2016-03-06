@@ -12,7 +12,7 @@ Registros Ultima Semama
 		<!-- AREA CHART -->
 		<div class="box box-primary">
 			<div class="box-header with-border">
-				<h3 class="box-title"><i class="fa fa-line-chart">Line Basic</i></h3>
+				<h3 class="box-title"><i class="fa fa-line-chart">Registros Ultima Semama</i></h3>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -56,15 +56,19 @@ $.ajaxSetup({
 
 $(document).ready(function(){
 
-	var dataString = "desde"+vdesde+"hasta"+vhasta;
-
 	$("#dates").click(function(){
+
+		var vdesde= $("#vdesde").val();
+		var vhasta= $("#vhasta").val();
+
+		var dataString = "desde="+vdesde+"&hasta="+vhasta;
+
 		$.ajax({
 			type: "GET",
 			url: "/lastweekreg/get",
 			data: dataString,
 			success: function(data){
-
+					console.log(data);
 					var chart = {
 						chart: {
 							renderTo: 'graphic1',
@@ -74,11 +78,17 @@ $(document).ready(function(){
 				            text: 'Registros Ultima Semama'
 				        },
 				        xAxis: {
-				            categories: []
+				            categories: [],
+				            labels: {
+				                style: {
+				                    color: 'black',
+				                    fontSize:'16px'
+				                }
+				            }
 				        },
 				        yAxis: {
 				            title: {
-				                text: 'N° de Registros)'
+				                text: 'N° de Registros'
 				            }
 				        },
 				        plotOptions: {
@@ -103,7 +113,6 @@ $(document).ready(function(){
 				});
 				var a = data.length;
 				for(var i=0; i<a; i++){
-					console.log('f')
 					categories.push(data[i]["date_format(`fecha_registro`,'%m-%d-%Y')"]);
 					series.push(parseInt(data[i]["count(date_format(`fecha_registro`,'%m-%d-%Y'))"]));
 				};

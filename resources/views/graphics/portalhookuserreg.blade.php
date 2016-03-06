@@ -12,7 +12,7 @@ Registros Ultima Semama
 		<!-- AREA CHART -->
 		<div class="box box-primary">
 			<div class="box-header with-border">
-				<h3 class="box-title"><i class="fa fa-line-chart">Line Basic</i></h3>
+				<h3 class="box-title"><i class="fa fa-line-chart">Registros Usuarios PortalHook</i></h3>
 
 				<div class="box-tools pull-right">
 					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -56,9 +56,13 @@ $.ajaxSetup({
 
 $(document).ready(function(){
 
-	var dataString = "desde"+vdesde+"hasta"+vhasta;
-
 	$("#dates").click(function(){
+
+		var vdesde= $("#vdesde").val();
+		var vhasta= $("#vhasta").val();
+
+		var dataString = "desde="+vdesde+"&hasta="+vhasta;
+
 		$.ajax({
 			type: "GET",
 			url: "/portalhookuserreg/get",
@@ -71,14 +75,20 @@ $(document).ready(function(){
 				            type: 'line'
 				        },
 				        title: {
-				            text: 'Registros Ultima Semama'
+				            text: 'Registros Usuarios PortalHook'
 				        },
 				        xAxis: {
-				            categories: []
+				            categories: [],
+    			            labels: {
+				                style: {
+				                    color: 'black',
+				                    fontSize:'16px'
+				                }
+				            }
 				        },
 				        yAxis: {
 				            title: {
-				                text: 'N° de Registros)'
+				                text: 'N° de Registros'
 				            }
 				        },
 				        plotOptions: {
