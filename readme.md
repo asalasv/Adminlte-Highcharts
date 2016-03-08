@@ -18,20 +18,20 @@ Para correr el programa es necesario seguir los siguientes pasos:
 					            $user->save();
 					        }
 
-	Para esto yo sigo los siguientes pasos, deben haber varias maneras.
-	
-	####Ejecutar el comando 'php artisan migrate' en consola:
-	Con esto se crean las tablas users, migrations y password_resets en la base de datos, una vez hecho esto se puede registrar usuarios nuevos.
+Para esto yo sigo los siguientes pasos, deben haber varias maneras.
 
-	####Descomento el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
+2.1- Ejecutar el comando 'php artisan migrate' en consola:
+Con esto se crean las tablas users, migrations y password_resets en la base de datos, una vez hecho esto se puede registrar usuarios nuevos.
 
-	####Registrar un usuario nuevo para entrar al portal
-	Cuando registres un usuario nuevo y entres al portal, al lado izquierdo en el sidebar entrar a Estadisticas-Registros Ult Semana.
+2.2- Descomento el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
 
-	y listo revisar la tabla usuarios_web de la base de datos, ya los passwords estarana encriptados.
+2.3- Registrar un usuario nuevo para entrar al portal
+Cuando registres un usuario nuevo y entres al portal, al lado izquierdo en el sidebar entrar a Estadisticas-Registros Ult Semana.
 
-	####Borrar las tablas creadas por la migracion (migrations, password_resets, users) y borrar el usuario registrado por nosotros.
+y listo revisar la tabla usuarios_web de la base de datos, ya los passwords estarana encriptados.
 
-	####Volver a comentar el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
+2.4- Borrar las tablas creadas por la migracion (migrations, password_resets, users) y borrar el usuario registrado por nosotros.
+
+2.5- Volver a comentar el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
 
 	Y listo una vez hecho estos pasos el sistema de login deberia funcionar con los usarios que ya estaban en la tabla usuarios_Web y sus respectivos passwords.				        
