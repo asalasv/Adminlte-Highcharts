@@ -1,27 +1,37 @@
-# Laravel PHP Framework
+# Dashboard para Portalhook para graficar y configurar
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+El siguiente dashboard esta hecho con [Laravel](http://laravel.com/docs), implementando el entorno grafico de [AdminlLTE 2](https://github.com/acacha/adminlte-laravel), las graficas son generadas con el plugin [Highcharts](http://www.highcharts.com/).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Implementacion
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Para correr el programa es necesario seguir los siguientes pasos:
 
-## Official Documentation
+###1. Modificar la longitud de la variable 'password' de la tabla 'usuarios.web', de varchar(11) a varchar(60).
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+###2. Para usar la autenticacion de laravel con los metodos Auth, es necesario encriptar todas los password existentes en la tabla 'usuarios_web' con el siguiente codigo 
+						
+					        $users = User::all();
 
-## Contributing
+					        foreach ($users as $user) {
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+					            $user->password = bcrypt($user->password);
+					            $user->save();
+					        }
 
-## Security Vulnerabilities
+	Para esto yo sigo los siguientes pasos, deben haber varias maneras.
+	
+	####Ejecutar el comando 'php artisan migrate' en consola:
+	Con esto se crean las tablas users, migrations y password_resets en la base de datos, una vez hecho esto se puede registrar usuarios nuevos.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+	####Descomento el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
 
-## License
+	####Registrar un usuario nuevo para entrar al portal
+	Cuando registres un usuario nuevo y entres al portal, al lado izquierdo en el sidebar entrar a Estadisticas-Registros Ult Semana.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+	y listo revisar la tabla usuarios_web de la base de datos, ya los passwords estarana encriptados.
+
+	####Borrar las tablas creadas por la migracion (migrations, password_resets, users) y borrar el usuario registrado por nosotros.
+
+	####Volver a comentar el codigo en [GraphicsController.php](https://github.com/asalasv/adminlte/blob/master/app/Http/Controllers/GraphicsController.php).
+
+	Y listo una vez hecho estos pasos el sistema de login deberia funcionar con los usarios que ya estaban en la tabla usuarios_Web y sus respectivos passwords.				        
