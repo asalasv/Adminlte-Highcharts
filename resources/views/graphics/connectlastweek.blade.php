@@ -37,7 +37,7 @@ Registros Ultima Semama
 					</form>
 				</div>
 				<div class="row">
-					<div id="graphic1" class="col-md-11"></div>
+					<div id="graphic1" class="col-md-12 center-block"></div>
 				</div>
 			</div>
 			<!-- /.box-body -->

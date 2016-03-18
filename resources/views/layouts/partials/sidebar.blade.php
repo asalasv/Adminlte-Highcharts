@@ -8,7 +8,7 @@
         @if (! Auth::guest())
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
+                <img src="{{asset('/img/dashboard-1.jpg')}}" class="img-thumbnail" alt="User Image" />
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->username }}</p>
@@ -30,8 +30,8 @@
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+        <ul class="sidebar-menu ">
+            <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li class="treeview">
@@ -41,7 +41,7 @@
                     <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos Ult Semana</a></li>
                     <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal Ult Semana</a></li>
                     <li><a href="{{ url('portalhookuserreg') }}">Reg. Usuarios PortalHook</a></li>
-                    <li><a href="{{ url('sexportalhookuserreg') }}">Reg. Usrs. PortalHook Hombres y Mujeres</a></li>
+                    <li><a href="{{ url('sexportalhookuserreg') }}">Reg. Usrs. PortalHook por Genero</a></li>
                 </ul>
             </li>
             <li class="treeview">
