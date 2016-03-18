@@ -364,6 +364,10 @@ Route::group(['middleware' => ['web']], function () {
 	|
 	*/
 
+	Route::get('portal/publicidad', 'PortalController@imgpublicidad');
+
+	Route::get('portal/logo', 'PortalController@imglogo');
+
 	Route::get('lastweekreg', 'GraphicsController@lastweekreg');
 
 	Route::get('newlastweekreg', 'GraphicsController@newlastweekreg');

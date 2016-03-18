@@ -50,8 +50,8 @@
                     <li class="treeview">
                         <a href="#"><i class='fa fa-desktop'></i> <span>Portal</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="#">Imagen de publicidad</a></li>
-                            <li><a href="#">Imagen de logo</a></li>
+                            <li><a href="{{ url('portal/publicidad') }}">Imagen de publicidad</a></li>
+                            <li><a href="{{ url('portal/logo') }}">Imagen de logo</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
