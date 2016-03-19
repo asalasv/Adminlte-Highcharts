@@ -57,27 +57,27 @@ Route::group(['middleware' => ['web']], function () {
 					$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 							FROM `registro_portales`
 							WHERE `id_cliente` = ".$id_cliente.
-							" AND `fecha_registro` between ".$req->desde ." and ".$req->hasta." 
+							" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y')
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
 						$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 								FROM `registro_portales`
 								WHERE `id_cliente` = ".$id_cliente.
-								" AND `fecha_registro` > ".$req->desde." 
+								" AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` < ".$req->hasta."
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` between now()-interval 400 day and now()
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 
@@ -117,27 +117,27 @@ Route::group(['middleware' => ['web']], function () {
 					$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 							FROM `primer_registro_email`
 							WHERE `id_cliente` = ".$id_cliente.
-							" AND `fecha_registro` between ".$req->desde ." and ".$req->hasta." 
+							" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y')
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
 						$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 								FROM `primer_registro_email`
 								WHERE `id_cliente` = ".$id_cliente.
-								" AND `fecha_registro` > ".$req->desde." 
+								" AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `primer_registro_email`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` < ".$req->hasta."
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `primer_registro_email`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` between now()-interval 400 day and now()
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 
@@ -177,27 +177,27 @@ Route::group(['middleware' => ['web']], function () {
 					$sql = "SELECT date_format(`fecha_actividad`,'%m-%d-%Y'), count(date_format(`fecha_actividad`,'%m-%d-%Y'))
 							FROM `actividad_portales`
 							WHERE `id_cliente` = ".$id_cliente.
-							" AND `fecha_actividad` between ".$req->desde ." and ".$req->hasta." 
+							" AND date_format(`fecha_actividad`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y')
 							GROUP BY date_format(`fecha_actividad`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
 						$sql = "SELECT date_format(`fecha_actividad`,'%m-%d-%Y'), count(date_format(`fecha_actividad`,'%m-%d-%Y'))
 								FROM `actividad_portales`
 								WHERE `id_cliente` = ".$id_cliente.
-								" AND `fecha_actividad` > ".$req->desde." 
+								" AND date_format(`fecha_actividad`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_actividad`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
 							$sql = "SELECT date_format(`fecha_actividad`,'%m-%d-%Y'), count(date_format(`fecha_actividad`,'%m-%d-%Y'))
 									FROM `actividad_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_actividad` < ".$req->hasta."
+									" AND date_format(`fecha_actividad`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_actividad`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_actividad`,'%m-%d-%Y'), count(date_format(`fecha_actividad`,'%m-%d-%Y'))
 									FROM `actividad_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_actividad` between now()-interval 400 day and now()
+									" AND date_format(`fecha_actividad`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_actividad`,'%m-%d-%Y')";
 						}
 			
@@ -235,27 +235,27 @@ Route::group(['middleware' => ['web']], function () {
 					$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 							FROM `registro_usuarios_ph`
 							WHERE `id_cliente` = ".$id_cliente.
-							" AND `fecha_registro` between ".$req->desde ." and ".$req->hasta." 
+							" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y') 
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
 						$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 								FROM `registro_usuarios_ph`
 								WHERE `id_cliente` = ".$id_cliente.
-								" AND `fecha_registro` > ".$req->desde." 
+								" AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` < ".$req->hasta."
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND `fecha_registro` between now()-interval 400 day and now()
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 			
@@ -293,13 +293,13 @@ Route::group(['middleware' => ['web']], function () {
 							FROM `registro_usuarios_ph`
 							WHERE `id_cliente` = ".$id_cliente.
 							" AND `sex` = 'M' 
-							AND `fecha_registro` between ".$req->desde ." and ".$req->hasta." 
+							AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y') 
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 							FROM `registro_usuarios_ph`
 							WHERE `id_cliente` = ".$id_cliente.
 							" AND `sex` = 'F' 
-							AND `fecha_registro` between ".$req->desde ." and ".$req->hasta." 
+							AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( ".$req->desde ." ,'%m-%d-%Y') and date_format( ".$req->hasta." ,'%m-%d-%Y') 
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
@@ -307,13 +307,13 @@ Route::group(['middleware' => ['web']], function () {
 								FROM `registro_usuarios_ph`
 								WHERE `id_cliente` = ".$id_cliente.
 								" AND `sex` = 'M' 
-								AND `fecha_registro` > ".$req->desde." 
+								AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 								FROM `registro_usuarios_ph`
 								WHERE `id_cliente` = ".$id_cliente.
 								" AND `sex` = 'F' 
-								AND `fecha_registro` > ".$req->desde." 
+								AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( ".$req->desde." ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
@@ -321,26 +321,26 @@ Route::group(['middleware' => ['web']], function () {
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'M' 
-									AND `fecha_registro` < ".$req->hasta."
+									AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 							$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'F' 
-									AND `fecha_registro` < ".$req->hasta."
+									AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( ".$req->hasta." ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'M' 
-									AND `fecha_registro` between now()-interval 400 day and now()
+									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 							$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'F' 
-									AND `fecha_registro` between now()-interval 400 day and now()
+									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 			
