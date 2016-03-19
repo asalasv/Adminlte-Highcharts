@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-	return view('auth/login');
-});
-
 Route::group(['middleware' => ['web']], function () {
+
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
+	Route::get('/', function () {
+		return view('auth/login');
+	});
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -367,6 +372,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('portal/publicidad', 'PortalController@imgpublicidad');
 
 	Route::get('portal/logo', 'PortalController@imglogo');
+
+	Route::post('portal/logo', 'PortalController@updateimglogo');
 
 	Route::get('lastweekreg', 'GraphicsController@lastweekreg');
 

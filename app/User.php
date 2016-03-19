@@ -28,4 +28,31 @@ class User extends Authenticatable
     public $timestamps = false;
 
     protected $primaryKey = 'id_usuario_web';
+
+    public function getRememberToken()
+    {
+        return null;
+    }
+
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        
+    }
+
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return null;
+    }
+
 }

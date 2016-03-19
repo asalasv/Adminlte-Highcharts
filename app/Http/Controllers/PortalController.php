@@ -25,4 +25,12 @@ class PortalController extends Controller
         return view('portal/logo');
     }
 
+    public function updateimglogo(Request $request)
+    {
+    	dd('llegue');
+        return view('portal/logo');
+    
+
+    }
+
 }

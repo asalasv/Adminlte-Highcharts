@@ -16,10 +16,12 @@ Home
 				<div class="panel-body">
 					<img src="img/photo1.png" alt="..." class="img-rounded center-block">
 				</div>
-				<div class="box-footer">
-		            <label for="exampleInputFile">Actualizar Imagen de Logo</label>
-                    <input type="file" class="form-control" name="publicidad">
-				</div>
+				{!! Form::open (['route'=> ['updatelogo'], 'method' => 'POST', 'class'=>'form-horizontal','files'=>true, 'enctype'=>'multipart/form-data']) !!}
+					<div class="box-footer">
+			            <label for="exampleInputFile">Actualizar Imagen de Logo</label>
+	                    <input type="file" class="form-control" name="publicidad">
+					</div>
+				{!! Form::close()!!}
 			</div>
 		</div>
 
