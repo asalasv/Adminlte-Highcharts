@@ -13,10 +13,10 @@ Home
 				<div class="panel-heading text-center">Publicidad</div>
 
 				<div class="panel-body">
-					<img src="img/photo1.png" alt="..." class="img-rounded center-block">
+					<img src={{$publicidad}} alt="..." class="img-rounded center-block">
 				</div>
 				<div class="box-footer">
-		            <label for="exampleInputFile">Actualizar Imagen de Publicidad</label>
+		            <label for="exampleInputFile"><i class="fa fa-edit"></i>Actualizar Imagen de Publicidad</label>
                     <input type="file" class="form-control" name="publicidad">
 				</div>
 			</div>
