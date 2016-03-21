@@ -77,7 +77,7 @@ Route::group(['middleware' => ['web']], function () {
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 
@@ -137,7 +137,7 @@ Route::group(['middleware' => ['web']], function () {
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `primer_registro_email`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 
@@ -197,7 +197,7 @@ Route::group(['middleware' => ['web']], function () {
 							$sql = "SELECT date_format(`fecha_actividad`,'%m-%d-%Y'), count(date_format(`fecha_actividad`,'%m-%d-%Y'))
 									FROM `actividad_portales`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND date_format(`fecha_actividad`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									" AND date_format(`fecha_actividad`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_actividad`,'%m-%d-%Y')";
 						}
 			
@@ -255,7 +255,7 @@ Route::group(['middleware' => ['web']], function () {
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
-									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 			
@@ -334,13 +334,13 @@ Route::group(['middleware' => ['web']], function () {
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'M' 
-									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 							$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND `sex` = 'F' 
-									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 400 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 			
