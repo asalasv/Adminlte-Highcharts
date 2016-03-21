@@ -21,7 +21,7 @@ Home
 		            <label for="exampleInputFile"><i class="fa fa-edit"></i>Actualizar Imagen de Logo</label>
                     <div class="row">
                     	<div class="col-xs-4">
-	                    	<input type="file" class="form-control" name="publicidad">
+	                    	<input type="file" class="form-control" name="logo">
 	                    </div>
 	                    <div class="col-xs-4">
 	                    	<button type="submit" class="btn btn-success"><i class="fa fa-upload"></i></button>

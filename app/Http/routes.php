@@ -377,6 +377,10 @@ Route::group(['middleware' => ['web']], function () {
 	    'as' => 'portal/logo', 'uses' => 'PortalController@updateimglogo'
 	]);
 
+	Route::post('portal/publicidad',[
+	    'as' => 'portal/publicidad', 'uses' => 'PortalController@updateimgpublicidad'
+	]);
+
 	Route::get('lastweekreg', 'GraphicsController@lastweekreg');
 
 	Route::get('newlastweekreg', 'GraphicsController@newlastweekreg');
