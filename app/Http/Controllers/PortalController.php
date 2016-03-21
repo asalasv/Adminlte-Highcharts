@@ -16,9 +16,7 @@ class PortalController extends Controller
         $this->middleware('auth');
     }
 
-    //Registros Nuevos Ultima Semana
-    public function imgpublicidad()
-    {
+    public function getIdcliente(){
 
         $user=Auth::user();
 
@@ -28,7 +26,15 @@ class PortalController extends Controller
 
         $rows = \DB::select($sql1);  
 
-        $id_cliente = $rows[0]->id_cliente;
+        return $rows[0]->id_cliente;
+
+    }
+
+    //Registros Nuevos Ultima Semana
+    public function imgpublicidad()
+    {
+
+        $id_cliente = $this->getIdcliente();
 
         $sql = "SELECT imagen_publicidad
                 FROM portales_cliente 
@@ -46,15 +52,7 @@ class PortalController extends Controller
     public function imglogo()
     {
 
-        $user=Auth::user();
-
-        $sql1 = "SELECT id_cliente
-        FROM clientes
-        WHERE id_usuario_web =".$user->id_usuario_web;
-
-        $rows = \DB::select($sql1);  
-
-        $id_cliente = $rows[0]->id_cliente;
+        $id_cliente = $this->getIdcliente();
 
         $sql = "SELECT imagen_logo
                 FROM portales_cliente 
@@ -75,15 +73,7 @@ class PortalController extends Controller
             
             if($logo){
                 
-                $user=Auth::user();
-
-                $sql1 = "SELECT id_cliente
-                FROM clientes
-                WHERE id_usuario_web =".$user->id_usuario_web;
-
-                $rows = \DB::select($sql1);  
-
-                $id_cliente = $rows[0]->id_cliente;
+                $id_cliente = $this->getIdcliente();
 
                 $fp      = fopen($logo->getRealPath(), 'r');
                 $image = fread($fp, filesize($logo->getRealPath()));
@@ -113,15 +103,7 @@ class PortalController extends Controller
             
             if($publicidad){
                 
-                $user=Auth::user();
-
-                $sql1 = "SELECT id_cliente
-                FROM clientes
-                WHERE id_usuario_web =".$user->id_usuario_web;
-
-                $rows = \DB::select($sql1);  
-
-                $id_cliente = $rows[0]->id_cliente;
+                $id_cliente = $this->getIdcliente();
 
                 $fp      = fopen($publicidad->getRealPath(), 'r');
                 $image = fread($fp, filesize($publicidad->getRealPath()));
