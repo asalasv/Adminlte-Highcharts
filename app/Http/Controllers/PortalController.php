@@ -26,7 +26,11 @@ class PortalController extends Controller
 
         $rows = \DB::select($sql1);  
 
-        return $rows[0]->id_cliente;
+        if(count($rows)){
+            return $rows[0]->id_cliente;
+        }else{
+            return null;
+        }
 
     }
 
@@ -69,61 +73,81 @@ class PortalController extends Controller
 
     public function updateimglogo(Request $request)
     {
-        foreach ($request->only('logo') as $logo) {
             
-            if($logo){
-                
-                $id_cliente = $this->getIdcliente();
+        $id_cliente = $this->getIdcliente();
 
-                $fp      = fopen($logo->getRealPath(), 'r');
-                $image = fread($fp, filesize($logo->getRealPath()));
-                $image = addslashes($image);
-                fclose($fp);
+        if($id_cliente){
 
-                $sql = "UPDATE portales_cliente 
-                        SET imagen_logo = '".$image."' 
-                        WHERE  id_cliente =".$id_cliente;
+            foreach ($request->only('logo') as $logo) {
+            
+                if($logo){
+                    
+                    $id_cliente = $this->getIdcliente();
 
-                $result = \DB::statement($sql);
+                    $fp      = fopen($logo->getRealPath(), 'r');
+                    $image = fread($fp, filesize($logo->getRealPath()));
+                    $image = addslashes($image);
+                    fclose($fp);
 
-                return $this->imglogo();
+                    $sql = "UPDATE portales_cliente 
+                            SET imagen_logo = '".$image."' 
+                            WHERE  id_cliente =".$id_cliente;
 
-            }else
-                return $this->imglogo();
+                    $result = \DB::statement($sql);
 
-        }
+                    return $this->imglogo();
 
-        return view('portal/logo');
+                }else
+                    return $this->imglogo();
+
+            }
+
+            return view('portal/logo');
+
+        }else
+            return view('portal/logo');
+
+        
 
     }
 
     public function updateimgpublicidad(Request $request)
     {
-        foreach ($request->only('publicidad') as $publicidad) {
+
+        $id_cliente = $this->getIdcliente();
+
+        if($id_cliente){
+
+            foreach ($request->only('publicidad') as $publicidad) {
             
-            if($publicidad){
-                
-                $id_cliente = $this->getIdcliente();
+                if($publicidad){
+                    
+                    $id_cliente = $this->getIdcliente();
 
-                $fp      = fopen($publicidad->getRealPath(), 'r');
-                $image = fread($fp, filesize($publicidad->getRealPath()));
-                $image = addslashes($image);
-                fclose($fp);
+                    $fp      = fopen($publicidad->getRealPath(), 'r');
+                    $image = fread($fp, filesize($publicidad->getRealPath()));
+                    $image = addslashes($image);
+                    fclose($fp);
 
-                $sql = "UPDATE portales_cliente 
-                        SET imagen_publicidad = '".$image."' 
-                        WHERE  id_cliente =".$id_cliente;
+                    $sql = "UPDATE portales_cliente 
+                            SET imagen_publicidad = '".$image."' 
+                            WHERE  id_cliente =".$id_cliente;
 
-                $result = \DB::statement($sql);
+                    $result = \DB::statement($sql);
 
-                return $this->imgpublicidad();
+                    return $this->imgpublicidad();
 
-            }else
-                return $this->imgpublicidad();
+                }else
+                    return $this->imgpublicidad();
 
-        }
+            }
 
-        return view('portal/publicidad');
+             return view('portal/publicidad');
+            
+
+        }else
+            return view('portal/publicidad');
+
 
     }
 

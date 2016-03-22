@@ -37,11 +37,11 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-line-chart'></i> <span>Estadisticas</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('lastweekreg') }}">Registros Ult Semama</a></li>
-                    <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos Ult Semana</a></li>
-                    <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal Ult Semana</a></li>
-                    <li><a href="{{ url('portalhookuserreg') }}">Reg. Usuarios PortalHook</a></li>
-                    <li><a href="{{ url('sexportalhookuserreg') }}">Reg. Usrs. PortalHook por Genero</a></li>
+                    <li><a href="{{ url('lastweekreg') }}">Registros por Periodo</a></li>
+                    <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos por Periodo</a></li>
+                    <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal</a></li>
+                    <li><a href="{{ url('portalhookuserreg') }}">Registros nuevos</a></li>
+                    <li><a href="{{ url('sexportalhookuserreg') }}">Registro Usuarios PH vs Visitantes</a></li>
                 </ul>
             </li>
             <li class="treeview">
