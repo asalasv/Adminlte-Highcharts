@@ -68,18 +68,18 @@ $(document).ready(function(){
 			url: "/portalhookuserreg/get",
 			data: dataString,
 			success: function(data){
-
+					console.log(data);
 					var chart = {
 						chart: {
 							renderTo: 'graphic1',
 				            type: 'line'
 				        },
 				        title: {
-				            text: 'Registros Usuarios PortalHook'
+				            text: 'Registro Usuarios PH vs Visitantes'
 				        },
 				        xAxis: {
 				            categories: [],
-    			            labels: {
+				            labels: {
 				                style: {
 				                    color: 'black',
 				                    fontSize:'16px'
@@ -88,7 +88,22 @@ $(document).ready(function(){
 				        },
 				        yAxis: {
 				            title: {
-				                text: 'N° de Registros'
+				                text: 'N° de Registros',
+				                 style: {
+				                    color: 'black',
+				                    fontSize:'16px'
+				                }
+				            },
+	                        plotLines: [{
+				                value: 0,
+				                width: 1,
+				                color: '#808080'
+				            }],
+				            labels: {
+				                style: {
+				                    color: 'black',
+				                    fontSize:'16px'
+				                }
 				            }
 				        },
 				        plotOptions: {
@@ -97,25 +112,51 @@ $(document).ready(function(){
 				                    enabled: true
 				                },
 				                enableMouseTracking: false
+				            },
+  				            series: {
+				                dataLabels: {
+				                    enabled: true,
+				                    style: {"color": "contrast", "fontSize": '16px'}
+				                }
 				            }
 				        },
 				        series: [{
-				            name: 'Cantidad de Registros',
+				            name: 'Cantidad de Registros Usuarios PH',
+				            data: []
+				        },{
+				        	name: 'Cantidad de visitantes',
 				            data: []
 				        }]
 				    };
 
 				var series = [];
+				var series1 =[];
 				var categories = [];
 
 				var array = $.map(data, function(value, index) {
 					[value];
 				});
 				var a = data.length;
+				console.log('length '+a);
 				for(var i=0; i<a; i++){
-					console.log('f')
-					categories.push(data[i]["date_format(`fecha_registro`,'%m-%d-%Y')"]);
-					series.push(parseInt(data[i]["count(date_format(`fecha_registro`,'%m-%d-%Y'))"]));
+					console.log('i: '+i);
+					var b = data[i].length;
+
+					for(var j=0; j<b; j++){
+						if(i==0){
+							if(data[i][j]["date_format(`fecha_registro`,'%m-%d-%Y')"]){
+								console.log('nbbb')
+								categories.push(data[i][j]["date_format(`fecha_registro`,'%m-%d-%Y')"]);
+								series.push(parseInt(data[i][j]["count(date_format(`fecha_registro`,'%m-%d-%Y'))"]));
+							}
+						}else{
+							if(data[i][j]["date_format(`fecha_registro`,'%m-%d-%Y')"]){
+								console.log('all')
+								categories.push(data[i][j]["date_format(`fecha_registro`,'%m-%d-%Y')"]);
+								series1.push(parseInt(data[i][j]["count(date_format(`fecha_registro`,'%m-%d-%Y'))"]));
+							}
+						}
+					};
 				};
 				console.log('categorias');
 				console.log(categories);
@@ -123,6 +164,7 @@ $(document).ready(function(){
 				console.log(series);
 
 				 chart.series[0].data = series;
+				 chart.series[1].data = series1;
 				 chart.xAxis.categories = categories;
 
 				// console.log(chart);

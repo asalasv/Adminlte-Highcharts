@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
 		return view('auth/login');
 	});
 
+	Route::resource('excel','ExcelController');
 
 	/*
 	|--------------------------------------------------------------------------
@@ -275,6 +276,12 @@ Route::group(['middleware' => ['web']], function () {
 							WHERE `id_cliente` = ".$id_cliente.
 							" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( '".$req->desde."' ,'%m-%d-%Y') and date_format( '".$req->hasta."' ,'%m-%d-%Y') 
 							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
+					$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
+							FROM `registro_portales`
+							WHERE `id_cliente` = ".$id_cliente.
+							" AND `id_usuario_ph` IS NULL
+							AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format( '".$req->desde."' ,'%m-%d-%Y') and date_format( '".$req->hasta."' ,'%m-%d-%Y') 
+							GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 				}else
 					if($req->desde){
 
@@ -284,6 +291,12 @@ Route::group(['middleware' => ['web']], function () {
 								FROM `registro_usuarios_ph`
 								WHERE `id_cliente` = ".$id_cliente.
 								" AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( '".$req->desde."' ,'%m-%d-%Y') 
+								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
+						$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
+								FROM `registro_portales`
+								WHERE `id_cliente` = ".$id_cliente.
+								" AND `id_usuario_ph` IS NULL
+								AND date_format(`fecha_registro`,'%m-%d-%Y')  > date_format( '".$req->desde."' ,'%m-%d-%Y') 
 								GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 					}else
 						if($req->hasta){
@@ -295,17 +308,34 @@ Route::group(['middleware' => ['web']], function () {
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( '".$req->hasta."' ,'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
+							$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
+									FROM `registro_portales`
+									WHERE `id_cliente` = ".$id_cliente.
+									" AND `id_usuario_ph` IS NULL
+									AND date_format(`fecha_registro`,'%m-%d-%Y') < date_format( '".$req->hasta."' ,'%m-%d-%Y') 
+									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}else{
 							$sql = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
 									FROM `registro_usuarios_ph`
 									WHERE `id_cliente` = ".$id_cliente.
 									" AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
 									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
+							$sql1 = "SELECT date_format(`fecha_registro`,'%m-%d-%Y'), count(date_format(`fecha_registro`,'%m-%d-%Y'))
+									FROM `registro_portales`
+									WHERE `id_cliente` = ".$id_cliente.
+									" AND `id_usuario_ph` IS NULL
+									AND date_format(`fecha_registro`,'%m-%d-%Y') between date_format(now()-interval 7 day,'%m-%d-%Y') and date_format(now(),'%m-%d-%Y')
+									GROUP BY date_format(`fecha_registro`,'%m-%d-%Y')";
 						}
 			
 				$results = DB::select($sql);
 
-				return $results;
+				$results1 = DB::select($sql1);
+
+				$array = array($results, $results1);
+
+				return $array;
+				
 			}else
 				return "El id del usuario '".$user->username."' no se encuentra en tabla clientes";
 		}

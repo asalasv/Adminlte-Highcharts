@@ -40,8 +40,8 @@
                     <li><a href="{{ url('lastweekreg') }}">Registros por Periodo</a></li>
                     <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos por Periodo</a></li>
                     <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal</a></li>
-                    <li><a href="{{ url('portalhookuserreg') }}">Registros nuevos</a></li>
-                    <li><a href="{{ url('sexportalhookuserreg') }}">Registro Usuarios PH vs Visitantes</a></li>
+                    <li><a href="{{ url('portalhookuserreg') }}">Registro Usuarios PH vs Visitantes</a></li>
+                    <li><a href="{{ url('sexportalhookuserreg') }}">Registro Usuarios PH por Genero</a></li>
                 </ul>
             </li>
             <li class="treeview">
