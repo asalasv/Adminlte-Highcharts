@@ -21,30 +21,46 @@ Registros Ultima Semama
 				</div>
 			</div>
 			<div class="box-body">
+				<div class="bootstrap-iso">
+					<div class="row">
+						<form class="form-inline col-md-12">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<div class="form-group"> <!-- Date input -->
+										<label class="control-label" for="date">Desde</label>
+										<input class="form-control" id="vdesde" name="vdesde" placeholder="MM/DD/YYY" type="text"/>
+									</div>
+									<div class="form-group"> <!-- Date input -->
+										<label class="control-label" for="date">Hasta</label>
+										<input class="form-control" id="vhasta" name="vhasta" placeholder="MM/DD/YYY" type="text"/>
+									</div>
+							<button type="button" id="dates" class="btn btn-primary">Generar Grafica</button>
+						</form>
+					</div>
+				</div>	
 				<div class="row">
-					<form class="form-inline col-md-12">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<div class="form-group">
-							<label for="exampleInputName2">Desde</label>
-							<input type="date" class="form-control input-sm" id="vdesde">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail2">Hasta</label>
-							<input type="date" class="form-control input-sm" id="vhasta">
-						</div>
-						<button type="button" id="dates" class="btn btn-primary">Generar Grafica</button>
-						<!-- <button type='submit' class="btn btn-success" id="dates"><i class="fa fa-line-chart"></i>Generar Grafica</button> -->
-					</form>
+					<div id="graphic1" class="col-md-12 center-block"></div>
 				</div>
-				<div class="row">
-					<div id="graphic1" class="col-md-11"></div>
-				</div>
+
 			</div>
 			<!-- /.box-body -->
 		</div>
 		<!-- /.box -->
 	</div>
 </div>
+
+<script>
+    var vhasta=$('input[name="vhasta"]'); //our date input has the name "date"
+    var vdesde=$('input[name="vdesde"]'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    };
+    vdesde.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
+    vhasta.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
+</script>
 
 
 <script type="text/javascript">
