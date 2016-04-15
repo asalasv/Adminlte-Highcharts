@@ -23,6 +23,11 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::resource('excel','ExcelController');
 
+	Route::get('/clientes','AdminController@UsuariosRegistrados');
+
+	Route::get('/e-mailing','EmailingController@emailing');
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Routes

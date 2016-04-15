@@ -31,21 +31,28 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu ">
-            <li class="header">MENU</li>
+            <li class="header">MENÚ</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
+            <li class="treeview"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-line-chart'></i> <span>Estadisticas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-dashboard'></i> <span>Administración</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('lastweekreg') }}">Registros por Periodo</a></li>
-                    <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos por Periodo</a></li>
-                    <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal</a></li>
-                    <li><a href="{{ url('portalhookuserreg') }}">Registro Usuarios PH vs Visitantes</a></li>
-                    <li><a href="{{ url('sexportalhookuserreg') }}">Registro Usuarios PH por Genero</a></li>
+                    <li><a href="{{ url('clientes') }}">Clientes Registrados</a></li>
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-gear'></i> <span>Configuracion</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-line-chart'></i> <span>Estadísticas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('lastweekreg') }}">Registros por Período</a></li>
+                    <li><a href="{{ url('newlastweekreg') }}">Registros Nuevos por Período</a></li>
+                    <li><a href="{{ url('connectlastweek') }}">Conexiones al Portal</a></li>
+                    <li><a href="{{ url('portalhookuserreg') }}">Registro Usuarios PH vs Visitantes</a></li>
+                    <li><a href="{{ url('sexportalhookuserreg') }}">Registro Usuarios PH por Género</a></li>
+                </ul>
+            </li>
+            <li class="treeview"><a href="{{ url('e-mailing') }}"><i class='fa fa-envelope'></i> <span>E-mailing</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-gear'></i> <span>Configuración</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li class="treeview">
                         <a href="#"><i class='fa fa-desktop'></i> <span>Portal</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -58,7 +65,7 @@
                         <a href="#"><i class='fa fa-wifi'></i> <span>Wifi</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="#">Bloq. de disp. por MAC</a></li>
-                            <li><a href="#">Bloq. de categorias de internet</a></li>
+                            <li><a href="#">Bloq. de categorías de internet</a></li>
                         </ul>
                     </li>
                 </ul>
